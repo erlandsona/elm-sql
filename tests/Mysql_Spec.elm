@@ -8,7 +8,7 @@ import Test exposing (Test, describe, test)
 
 eq : String -> Expr any -> Expectation
 eq str sql =
-    Mysql.eval sql
+    Mysql.toSql sql
         |> eq_ str
 
 
@@ -19,7 +19,7 @@ eq_ =
 
 spec : Test
 spec =
-    describe "eval"
+    describe "toSql"
         [ select_specs
         ]
 
@@ -32,7 +32,7 @@ select_specs =
                 [ SELECT (VALUE (Bool True))
                 , SELECT (VALUE (Bool False))
                 ]
-                    |> List.map eval
+                    |> List.map toSql
                     |> eq_ [ "SELECT 1;", "SELECT 0;" ]
         , test "String" <|
             \() ->

@@ -1,18 +1,35 @@
 module Mysql exposing
-    ( Expr(..)
-    , VALUE(..)
-    , eval
+    ( select
+    , toSql
+    , Expr(..), VALUE(..)
     )
 
+{-|
 
-eval : Expr any -> String
-eval x =
+
+# Builders
+
+@docs select, insert, update, delete, ...
+
+@docs toSql
+
+Types
+
+-}
+
+
+select =
+    Debug.todo "Make this make sense :grimacing:"
+
+
+toSql : Expr any -> String
+toSql x =
     case x of
         SELECT e ->
-            "SELECT " ++ eval e ++ ";"
+            "SELECT " ++ toSql e ++ ";"
 
         VALUE v ->
-            valueToS v
+            valueToSql v
 
 
 type Expr f
@@ -27,8 +44,8 @@ type VALUE
     | Null
 
 
-valueToS : VALUE -> String
-valueToS v =
+valueToSql : VALUE -> String
+valueToSql v =
     case v of
         String s ->
             "'" ++ s ++ "'"
