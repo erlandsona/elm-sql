@@ -1,14 +1,28 @@
 module Queries exposing (..)
 
-import Mysql exposing (select)
+import Mysql as SQL exposing (SelectExpr)
 import User exposing (User)
 
 
-usersIndex : Mysql.Expr User
+{-| Applicative Version
+
+    usersIndex : Mysql.Expr
+    usersIndex =
+        SQL.select User
+            |> SQL.as User.id
+            |> SQL.as User.name
+            |> SQL.as User.age
+            --
+            |> SQL.from User.table
+            |> SQL.where User.id (Mysql.eq 1)
+
+-}
+usersIndex : SelectExpr
 usersIndex =
-    select User.all
-        { where_ | id = 1 }
-
-
-where_ =
-    { id = 0 }
+    -- SQL.select3 User
+    --     User.id
+    --     User.name
+    --     User.age
+    --     |> SQL.from User.table
+    --     |> SQL.where User.id (Mysql.eq 1)
+    Debug.todo "WRITEME"

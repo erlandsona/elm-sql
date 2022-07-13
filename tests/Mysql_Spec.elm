@@ -6,7 +6,7 @@ import Mysql exposing (..)
 import Test exposing (Test, describe, test)
 
 
-eq : String -> Expr any -> Expectation
+eq : String -> Expr -> Expectation
 eq str sql =
     Mysql.toSql sql
         |> eq_ str

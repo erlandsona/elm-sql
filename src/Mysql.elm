@@ -1,7 +1,7 @@
 module Mysql exposing
     ( select
     , toSql
-    , Expr(..), VALUE(..)
+    , SelectExpr(..), VALUE(..)
     )
 
 {-|
@@ -22,7 +22,7 @@ select =
     Debug.todo "Make this make sense :grimacing:"
 
 
-toSql : Expr any -> String
+toSql : SelectExpr -> String
 toSql x =
     case x of
         SELECT e ->
@@ -32,8 +32,12 @@ toSql x =
             valueToSql v
 
 
-type Expr f
-    = SELECT (Expr f)
+type SelectExpr
+    = SELECT SelectExpr
+      -- TODO: CUD Operations :/
+      -- | INSERT Expr
+      -- | UPDATE Expr
+      -- | DELETE Expr
     | VALUE VALUE
 
 

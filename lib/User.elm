@@ -1,11 +1,7 @@
 module User exposing (..)
 
-import Columns exposing (..)
-import Lens
-
-
-
--- import Mysql
+-- import Accessors exposing (Lens_)
+-- import Lens
 
 
 type alias User =
@@ -19,26 +15,11 @@ type alias User =
 
 
 
--- all : Mysql.From User
+-- id : Lens_ { m | id : Int } (Mysql Int)
+-- id =
+--     Mysql.int Lens.id
 
 
-all : { table : String, columns : Columns User }
-all =
-    -- Debug.todo """
-    -- Shorthand for * except it's the everything tuple...
-    -- sorta like
-    -- (Lens.id, Lens.name, Lens.age)
-    -- """
-    { table = "users"
-    , columns =
-        from { id = 1, name = "", age = 1 }
-
-    -- Columns (Int -> String -> Int -> User)
-    -- with Lens.id
-    -- |> with Lens.name
-    -- |> with Lens.age
-    -- [ Lens.id
-    -- , Lens.name
-    -- , Lens.age
-    -- ]
-    }
+table : String
+table =
+    "users"
